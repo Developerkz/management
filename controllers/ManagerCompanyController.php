@@ -56,6 +56,7 @@ class ManagerCompanyController{
 		$website = false;
 		$phone = false;
 		$address = false;
+		$content = false;
 
 
 		$message = false;
@@ -78,7 +79,7 @@ class ManagerCompanyController{
 			if(User::checkEmailExist($email)){$errors[] = Validate::emailExist();}
 			if(!$errors){
 				$user_id = User::add($name,$surname,$email,Setting::encryption($password),3);
-				Company::add($user_id,$cname,$website,$phone,$address,$company_type["id"],intval($_SESSION["user"]));
+				Company::add($user_id,$cname,$website,$phone,$address,$content,$company_type["id"],intval($_SESSION["user"]));
 				$message = true;
 				header("Location:/manager/company/task/add/".$user_id);
 			}

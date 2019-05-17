@@ -104,14 +104,14 @@ class Company{
 		Add Company
 		@return Boolean	
 	*/
-	public static function add($user_id,$title,$website,$phone,$address,$company_type_id,$creator_id){
+	public static function add($user_id,$title,$website,$phone,$address,$content,$company_type_id,$creator_id){
 
 		//Connection to DB
 		$db = $_COOKIE["db"];
 
 		//Fields
-		$sql = "INSERT INTO companies ( user_id, title, website, phone, address, company_type_id, created, updated, creator_id)
-								VALUES(:user_id,:title,:website,:phone,:address,:company_type_id, NOW()  , NOW()  ,:creator_id)";
+		$sql = "INSERT INTO companies ( user_id, title, website, phone, address, content, company_type_id, created, updated, creator_id)
+								VALUES(:user_id,:title,:website,:phone,:address,:content, :company_type_id, NOW()  , NOW()  ,:creator_id)";
 
 		//Query
 		$statement = $db->prepare($sql);
@@ -122,6 +122,7 @@ class Company{
 		$statement->bindParam(":website",$website,PDO::PARAM_STR);
 		$statement->bindParam(":phone",$phone,PDO::PARAM_STR);
 		$statement->bindParam(":address",$address,PDO::PARAM_STR);
+		$statement->bindParam(":content",$content,PDO::PARAM_STR);
 		$statement->bindParam(":company_type_id",$company_type_id,PDO::PARAM_INT);
 		$statement->bindParam(":creator_id",$creator_id,PDO::PARAM_INT);
 		

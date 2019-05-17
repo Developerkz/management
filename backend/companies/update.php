@@ -52,7 +52,7 @@
 					<input type="text" name="password" value="">
 				</div>
 
-				<div class="col-12 pd20">
+				<!--div class="col-12 pd20">
 					<label>Тип компании</label>
 					<select name="company_type">
 						<?php foreach($company_types as $type): ?>
@@ -61,11 +61,11 @@
 							</option>
 						<?php endforeach; ?>
 					</select>
-				</div>
+				</div-->
 				<div class="clear"></div>
 
 
-
+				<input type="hidden" name="company_type" value="<?php echo $item["company_type_id"]; ?>">
 				<div class="pd20 cntr">
 					<button type="submit" name="update">Сохранить</button>
 				</div>
