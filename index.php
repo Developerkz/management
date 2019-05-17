@@ -42,17 +42,10 @@ define("P",dirname(__FILE__)."/");
 define("URL","http://".$_SERVER["HTTP_HOST"]."/");
 //define("URL","https://".$_SERVER["HTTP_HOST"]."/");
 
-
-
-
-
 /*
 	Start Autoload
 */
 require_once(P."components/Autoload.php");
-
-
-
 
 
 /*
