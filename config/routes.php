@@ -12,8 +12,12 @@ return array(
 	'manager/template/add' => 'managerTemplate/add',
 	'manager/templates' => 'managerTemplate/list',
 
-	
+	//Company Task Manager
+
 	'manager/company/task/add/([0-9]+)' => 'managerCompany/task/$1',
+	'manager/company/step3/([0-9]{1})/([0-9]{1})' => 'managerCompany/stepthree/$1/$2',
+	'manager/company/step2/([0-9]{1})' => 'managerCompany/steptwo/$1',
+	'manager/company/step1' => 'managerCompany/stepone',
 
 	//Companies
 	'manager/company/delete/([0-9]+)' => 'managerCompany/delete/$1',

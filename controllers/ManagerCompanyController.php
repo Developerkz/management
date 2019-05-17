@@ -14,6 +14,83 @@ class ManagerCompanyController{
 	}
 
 
+	public function linkStepone(){
+		if(!User::isAuth()){header("Location:/");}
+
+		$page = "company";
+		$title = "Шаг 1 | Добавить компанию";
+
+
+		include_once(P."backend/companies/step1.php");
+		return true;
+	}
+
+
+	public function linkSteptwo($id){
+		if(!User::isAuth()){header("Location:/");}
+
+		$page = "company";
+		$title = "Шаг 2 | Добавить компанию";
+
+
+		include_once(P."backend/companies/step2.php");
+		return true;
+	}
+
+	public function linkStepThree($organization_id,$activity_id){
+		if(!User::isAuth()){header("Location:/");}
+
+		$page = "company";
+		$title = "Шаг 3 | Добавить компанию";
+
+
+		$company_type = CompanyType::getByParameters($organization_id,$activity_id);
+		
+
+		$surname = false;
+		$name = false;
+		$email = false;
+		$password = false;
+
+		$cname = false;
+		$website = false;
+		$phone = false;
+		$address = false;
+
+
+		$message = false;
+
+		if(isset($_POST["add"])){
+			$surname = $_POST["surname"];
+			$name = $_POST["name"];
+			$email = $_POST["email"];
+			$password = $_POST["password"];
+
+			$cname = $_POST["title"];
+			$website = $_POST["website"];
+			$phone = $_POST["phone"];
+			$address = $_POST["address"];
+
+			$errors = false;
+
+			if(!Validate::checkEmail($email)){$errors[] = Validate::errorEmail();}
+			if(!Validate::checkPassword($password)){$errors[] = Validate::errorPassword();}
+			if(User::checkEmailExist($email)){$errors[] = Validate::emailExist();}
+			if(!$errors){
+				$user_id = User::add($name,$surname,$email,Setting::encryption($password),3);
+				Company::add($user_id,$cname,$website,$phone,$address,$company_type["id"],intval($_SESSION["user"]));
+				$message = true;
+				header("Location:/manager/company/task/add/".$user_id);
+			}
+		}
+
+
+
+		include_once(P."backend/companies/step3.php");
+		return true;
+	}
+
+
 	public function linkAdd(){
 		if(!User::isAuth()){header("Location:/");}
 

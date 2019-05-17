@@ -20,7 +20,7 @@
 			Найдено: <?php echo count($data); ?>
 		</div>
 		<div class="aright">
-			<a href="<?php Setting::uri(); ?>manager/company/add" class="add-button">Добавить</a>
+			<a href="<?php Setting::uri(); ?>manager/company/step1" class="add-button">Добавить</a>
 		</div>
 		<div class="clear"></div>
 
